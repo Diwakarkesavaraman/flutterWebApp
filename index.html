@@ -71,84 +71,70 @@
   </div>
 
 
-  <script>
-
-     window.BrightnessChannel = {
-      postMessage: function(message) {
-        if (window.flutter_inappwebview) {
-          window.flutter_inappwebview.callHandler('BrightnessChannel', message).then(function(result) {
-            // receiveBrightness(result);
-          });
-        } else {
-          console.error('flutter_inappwebview is not defined');
-        }
-      }
-    };
-    function getScreenBrightness() {
-      // Send message to Flutter to get the screen brightness
-      // BrightnessChannel.postMessage('getBrightness');
-       if (window.BrightnessChannel) {
-        window.BrightnessChannel.postMessage('getBrightness');
-      } else {
-        console.error('BrightnessChannel is not defined');
-      }
-    }
-    function setBatteryPercentage(percentage) {
-      document.getElementById('brightness').textContent = ' Status ' + percentage ;
-    }
-
-     function openPopup() {
-      fetchDataAndDisplay();
-      document.getElementById('popup').style.display = 'flex';
-    }
-    function closePopup() {
-      document.getElementById('popup').style.display = 'none';
-    }
-    function listPairedDevices(jsonString){
-      const devices = "[\"1166-003258\"]",
-
-      // const devices = JSON.parse(jsonString);
-
-      // Now you can work with the list of devices
-      console.log('Paired devices:', devices);
-
-      console.log(devices);
-      fetchDataAndDisplay(devices);
-
-      document.getElementById('popup').style.display = 'flex';
-      
-    }
-
-    function fetchDataAndDisplay(devices) {
-      // Simulate data fetching
-        const dataList = document.getElementById('data-list');
-        dataList.innerHTML = ''; // Clear previous data
-      
-devices.forEach(item => {
-          const li = document.createElement('li');
-          li.textContent = item;
-          dataList.appendChild(li);
+ <script>
+  window.BrightnessChannel = {
+    postMessage: function(message) {
+      if (window.flutter_inappwebview) {
+        window.flutter_inappwebview.callHandler('BrightnessChannel', message).then(function(result) {
+          // Handle result if needed
         });
-      
-      // getData().then(data => {
-      //   const dataList = document.getElementById('data-list');
-      //   dataList.innerHTML = ''; // Clear previous data
-      //   data.forEach(item => {
-      //     const li = document.createElement('li');
-      //     li.textContent = item;
-      //     dataList.appendChild(li);
-      //   });
-      // });
+      } else {
+        console.error('flutter_inappwebview is not defined');
+      }
     }
+  };
 
-    function getData() {
-      // Simulating an API call to get data
-      return new Promise(resolve => {
-        setTimeout(() => {
-          resolve(['Item 1', 'Item 2', 'Item 3', 'Item 4']);
-        }, 1000);
-      });
+  function getScreenBrightness() {
+    if (window.BrightnessChannel) {
+      window.BrightnessChannel.postMessage('getBrightness');
+    } else {
+      console.error('BrightnessChannel is not defined');
     }
-  </script>
+  }
+
+  function setBatteryPercentage(percentage) {
+    document.getElementById('brightness').textContent = 'Status: ' + percentage;
+  }
+
+  function openPopup() {
+    fetchDataAndDisplay();
+    document.getElementById('popup').style.display = 'flex';
+  }
+
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+
+  function listPairedDevices(jsonString) {
+    const devices = ["1166-003258"]; // Example device list
+
+    // const devices = JSON.parse(jsonString);
+
+    // Now you can work with the list of devices
+    console.log('Paired devices:', devices);
+
+    fetchDataAndDisplay(devices);
+    document.getElementById('popup').style.display = 'flex';
+  }
+
+  function fetchDataAndDisplay(devices = []) {
+    const dataList = document.getElementById('data-list');
+    dataList.innerHTML = ''; // Clear previous data
+
+    devices.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      dataList.appendChild(li);
+    });
+  }
+
+  function getData() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(['Item 1', 'Item 2', 'Item 3', 'Item 4']);
+      }, 1000);
+    });
+  }
+</script>
 </body>
 </html>
