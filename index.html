@@ -114,6 +114,8 @@
 
     function fetchDataAndDisplay(devices) {
       // Simulate data fetching
+        const dataList = document.getElementById('data-list');
+        dataList.innerHTML = ''; // Clear previous data
       
 devices.forEach(item => {
           const li = document.createElement('li');
