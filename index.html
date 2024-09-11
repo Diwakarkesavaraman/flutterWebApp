@@ -106,23 +106,30 @@
     }
     function listPairedDevices(devices){
       console.log(devices);
-      fetchDataAndDisplay();
+      fetchDataAndDisplay(devices);
 
       document.getElementById('popup').style.display = 'flex';
       
     }
 
-    function fetchDataAndDisplay() {
+    function fetchDataAndDisplay(devices) {
       // Simulate data fetching
-      getData().then(data => {
-        const dataList = document.getElementById('data-list');
-        dataList.innerHTML = ''; // Clear previous data
-        data.forEach(item => {
+      
+devices.forEach(item => {
           const li = document.createElement('li');
           li.textContent = item;
           dataList.appendChild(li);
         });
-      });
+      
+      // getData().then(data => {
+      //   const dataList = document.getElementById('data-list');
+      //   dataList.innerHTML = ''; // Clear previous data
+      //   data.forEach(item => {
+      //     const li = document.createElement('li');
+      //     li.textContent = item;
+      //     dataList.appendChild(li);
+      //   });
+      // });
     }
 
     function getData() {
