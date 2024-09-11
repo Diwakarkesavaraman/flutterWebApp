@@ -124,8 +124,18 @@
     devices.forEach(item => {
       const li = document.createElement('li');
       li.textContent = item;
+       li.onclick = function() {
+        connectSelectedDevice(item);
+      };
       dataList.appendChild(li);
     });
+  }
+
+   function connectSelectedDevice(deviceId) {
+    console.log('Connecting to device:', deviceId);
+     window.BrightnessChannel.postMessage('connectDevice',deviceId);
+     closePopup();
+    
   }
 
   function getData() {
