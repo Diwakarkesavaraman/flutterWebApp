@@ -96,6 +96,11 @@
     function setBatteryPercentage(percentage) {
       document.getElementById('brightness').textContent = ' Status ' + percentage ;
     }
+
+     function openPopup() {
+      fetchDataAndDisplay();
+      document.getElementById('popup').style.display = 'flex';
+    }
     function listPairedDevices(devices){
       console.log(devices);
       fetchDataAndDisplay();
