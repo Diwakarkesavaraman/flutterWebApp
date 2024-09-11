@@ -43,7 +43,7 @@
     };
     function getScreenBrightness() {
       // Send message to Flutter to get the screen brightness
-      BrightnessChannel.postMessage('getBrightness');
+      // BrightnessChannel.postMessage('getBrightness');
        if (window.BrightnessChannel) {
         window.BrightnessChannel.postMessage('getBrightness');
       } else {
