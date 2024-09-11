@@ -104,7 +104,12 @@
     function closePopup() {
       document.getElementById('popup').style.display = 'none';
     }
-    function listPairedDevices(devices){
+    function listPairedDevices(jsonString){
+      const devices = JSON.parse(jsonString);
+
+      // Now you can work with the list of devices
+      console.log('Paired devices:', devices);
+
       console.log(devices);
       fetchDataAndDisplay(devices);
 
