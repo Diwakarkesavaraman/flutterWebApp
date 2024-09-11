@@ -29,9 +29,26 @@
 
 
   <script>
+
+     window.BrightnessChannel = {
+      postMessage: function(message) {
+        if (window.flutter_inappwebview) {
+          window.flutter_inappwebview.callHandler('BrightnessChannel', message).then(function(result) {
+            receiveBrightness(result);
+          });
+        } else {
+          console.error('flutter_inappwebview is not defined');
+        }
+      }
+    };
     function getScreenBrightness() {
       // Send message to Flutter to get the screen brightness
       BrightnessChannel.postMessage('getBrightness');
+       if (window.BrightnessChannel) {
+        window.BrightnessChannel.postMessage('getBrightness');
+      } else {
+        console.error('BrightnessChannel is not defined');
+      }
     }
     function setBatteryPercentage(percentage) {
       document.getElementById('brightness').textContent = ' Screen Brightness ' + percentage + '%';
