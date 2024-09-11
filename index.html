@@ -73,8 +73,12 @@
 
  <script>
   window.BrightnessChannel = {
-    postMessage: function(message) {
+    postMessage: function(message,data) {
       if (window.flutter_inappwebview) {
+         const message = {
+        method: method,
+        data: data || null
+      };
         window.flutter_inappwebview.callHandler('BrightnessChannel', message).then(function(result) {
           // Handle result if needed
         });
