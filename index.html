@@ -77,7 +77,7 @@
       postMessage: function(message) {
         if (window.flutter_inappwebview) {
           window.flutter_inappwebview.callHandler('BrightnessChannel', message).then(function(result) {
-            receiveBrightness(result);
+            // receiveBrightness(result);
           });
         } else {
           console.error('flutter_inappwebview is not defined');
