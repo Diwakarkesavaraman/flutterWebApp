@@ -100,6 +100,10 @@
     document.getElementById('brightness').textContent = 'Status: ' + percentage;
   }
 
+  function getEpcValue(epcData){
+    console.log('EPC value printed in web page' + epcData);
+  }
+
   function openPopup() {
     fetchDataAndDisplay();
     document.getElementById('popup').style.display = 'flex';
