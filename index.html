@@ -74,17 +74,18 @@
  <script>
   window.RfidChannel = {
     postMessage: function(method,data) {
-      if (window.flutter_inappwebview) {
-         const message = {
+        const message = {
         method: method,
         data: data || null
       };
-        window.flutter_inappwebview.callHandler('RfidChannel', message).then(function(result) {
-          // Handle result if needed
-        });
-      } else {
-        console.error('flutter_inappwebview is not defined');
-      }
+      // if (window.flutter_inappwebview) {
+       
+      //   window.flutter_inappwebview.callHandler('RfidChannel', message).then(function(result) {
+      //     // Handle result if needed
+      //   });
+      // } else {
+      //   console.error('flutter_inappwebview is not defined');
+      // }
     }
   };
 
