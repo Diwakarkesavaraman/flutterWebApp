@@ -90,6 +90,8 @@
     }
   };
 
+
+   // Send get device menthod in flutter
   function getScreenBrightness() {
     if (window.RfidChannel) {
       window.RfidChannel.postMessage('getBrightness');
@@ -98,23 +100,7 @@
     }
   }
 
-  function setBatteryPercentage(percentage) {
-    document.getElementById('brightness').textContent = 'Status: ' + percentage;
-  }
-
-  function getEpcValue(epcData){
-    console.log('EPC value printed in web page' + epcData);
-  }
-
-  function openPopup() {
-    fetchDataAndDisplay();
-    document.getElementById('popup').style.display = 'flex';
-  }
-
-  function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-  }
-
+    // Recevie list of paired device
   function listPairedDevices(jsonString) {
     // const devices = ["1166-003258"]; // Example device list
 
@@ -127,7 +113,7 @@
     document.getElementById('popup').style.display = 'flex';
   }
 
-  function fetchDataAndDisplay(devices = []) {
+   function fetchDataAndDisplay(devices = []) {
     const dataList = document.getElementById('data-list');
     dataList.innerHTML = ''; // Clear previous data
 
@@ -141,12 +127,38 @@
     });
   }
 
-   function connectSelectedDevice(deviceId) {
+   //Send deviceId to be connected in flutter
+    function connectSelectedDevice(deviceId) {
     console.log('Connecting to device:', deviceId);
      window.RfidChannel.postMessage('connectDevice',deviceId);
      closePopup();
     
   }
+   
+  //Recevie the connection status (1 - Connecing, 2 - Connected, 0 - Disconnected, 4- Lost)
+  function setBatteryPercentage(percentage) {
+    document.getElementById('brightness').textContent = 'Status: ' + percentage;
+  }
+
+   //Receive EPC value from flutter
+  function getEpcValue(epcData){
+    console.log('EPC value printed in web page' + epcData);
+  }
+
+  function openPopup() {
+    fetchDataAndDisplay();
+    document.getElementById('popup').style.display = 'flex';
+  }
+
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+
+  
+
+  
+
+  
 
   function getData() {
     return new Promise(resolve => {
