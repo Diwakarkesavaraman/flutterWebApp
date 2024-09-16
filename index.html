@@ -82,6 +82,7 @@
        
         window.flutter_inappwebview.callHandler('RfidChannel', message).then(function(result) {
           // Handle result if needed
+          console.log('result from inappWebview' + result);
         });
       } else {
         console.error('flutter_inappwebview is not defined');
