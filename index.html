@@ -84,10 +84,7 @@
 
  <script>
 
-     function submitInput() {
-            const inputText = document.getElementById('inputText').value;
-            alert(inputText);
-        }
+   
   window.RfidChannel = {
     postMessage: function(method,data) {
         const message = {
@@ -241,6 +238,7 @@
    // Get the response from printer
    function printerResponse(response){
      const message = JSON.parse(response);
+     alert(message);
      console.log(message);
 
    }
@@ -254,6 +252,12 @@
    function disconnectPrinter(){
            window.BluetoothChannel.postMessage('disconnectPrinter','');
    }
+
+     function submitInput() {
+            const inputText = document.getElementById('inputText').value;
+       window.BluetoothChannel.postMessage('sendMessagePrinter',inputText);
+            alert(inputText);
+        }
 
   
   function getData() {
