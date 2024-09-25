@@ -199,8 +199,30 @@
     // Now you can work with the list of devices
     console.log('Paired devices:', devices);
 
-    fetchDataAndDisplay(devices);
+    fetchPairedPrinterDevices(devices)
     document.getElementById('popup').style.display = 'flex';
+  }
+
+    function fetchPairedPrinterDevices(devices = []) {
+    const dataList = document.getElementById('data-list');
+    dataList.innerHTML = ''; // Clear previous data
+
+    devices.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.name;
+       li.onclick = function() {
+        connectPrinterDevice(item.address);
+      };
+      dataList.appendChild(li);
+    });
+  }
+
+   //Send deviceId to be connected in flutter
+    function connectPrinterDevice(deviceId) {
+    console.log('Connecting to device:', deviceId);
+     window.BluetoothChannel.postMessage('connectDevice',deviceId);
+     closePopup();
+    
   }
 
   
