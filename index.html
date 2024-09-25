@@ -75,6 +75,7 @@
 
   <button onclick="getPairedDevices()">Connect Device</button>
   <button onclick="sendMessagePrinter()">Send Message</button>
+  <button onclick="disconnectPrinter()">Disconnect</button>
 
 
  <script>
@@ -237,6 +238,10 @@
      const message = JSON.parse(response);
      console.log(message);
 
+   }
+
+   function disconnectPrinter(){
+           window.BluetoothChannel.postMessage('disconnectPrinter','');
    }
 
   
