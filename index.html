@@ -193,8 +193,6 @@
 
      // Recevie list of paired device
   function listPairedPrinterDevices(jsonString) {
-    // const devices = ["1166-003258"]; // Example device list
-
     const devices = JSON.parse(jsonString);
 
     // Now you can work with the list of devices
@@ -225,31 +223,30 @@
      closePopup();
     
   }
-
+    //Send message to printer
    function sendMessagePrinter(){
-      window.BluetoothChannel.postMessage('sendMessagePrinter','{}{"device.friendly_name":null}');
+      var message = '{}{"device.friendly_name":null}';
+      window.BluetoothChannel.postMessage('sendMessagePrinter',message);
    }
 
-     function setPrinterConnectionStatus(status) {
-    document.getElementById('printerStatus').textContent = 'Status: ' + status;
-  }
-
+   // Get the response from printer
    function printerResponse(response){
      const message = JSON.parse(response);
      console.log(message);
 
    }
 
+   // Get Printer connection status
+    function setPrinterConnectionStatus(status) {
+      document.getElementById('printerStatus').textContent = 'Status: ' + status;
+    }
+
+   // Disconnect form the connected printer
    function disconnectPrinter(){
            window.BluetoothChannel.postMessage('disconnectPrinter','');
    }
 
   
-
-  
-
-  
-
   function getData() {
     return new Promise(resolve => {
       setTimeout(() => {
@@ -257,6 +254,7 @@
       }, 1000);
     });
   }
+   
 </script>
 </body>
 </html>
