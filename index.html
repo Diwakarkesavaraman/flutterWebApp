@@ -71,7 +71,7 @@
   </div>
 
    <h1>Bluetooth Printer Status</h1>
-  <p id="brightness"> Status: Waiting...</p>
+  <p id="printerStatus"> Status: Waiting...</p>
 
   <button onclick="getPairedDevices()">Connect Device</button>
   <button onclick="sendMessagePrinter()">Send Message</button>
@@ -228,6 +228,10 @@
    function sendMessagePrinter(){
       window.BluetoothChannel.postMessage('sendMessagePrinter','{}{"device.friendly_name":null}');
    }
+
+     function setPrinterConnectionStatus(status) {
+    document.getElementById('printerStatus').textContent = 'Status: ' + status;
+  }
 
   
 
